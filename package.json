@@ -1,0 +1,27 @@
+{
+  "name": "nomad-youtube2022",
+  "version": "1.0.0",
+  "description": "Cloning youtube using nodejs, express, mongodb, es6",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yje9802/nomad-youtube2022.git"
+  },
+  "author": "yje9802",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yje9802/nomad-youtube2022/issues"
+  },
+  "homepage": "https://github.com/yje9802/nomad-youtube2022#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/node": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "nodemon": "^2.0.19"
+  }
+}
