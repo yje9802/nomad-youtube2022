@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cloning youtube using nodejs, express, mongodb, es6",
   "scripts": {
-    "dev": "nodemon --exec babel-node index"
+    "dev": "nodemon --exec babel-node src/server.js"
   },
   "repository": {
     "type": "git",
