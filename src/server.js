@@ -9,6 +9,10 @@ const app = express();
 
 const PORT = 4000;
 
+// view engine 적용
+app.set("view engine", "pug");
+// pug 파일을 찾아보는 디렉토리 변경
+app.set("views", process.cwd() + "/src/views");
 // 라우터 적용
 app.use("/", globalRouter);
 app.use("/users", userRouter);
