@@ -1,0 +1,7 @@
+extends base.pug
+
+block content 
+    //- action을 추가해주면 다른 url로 전송 가능
+    form(method="POST")
+        input(name="title", placeholder="Title", required, type="text")
+        input(type="submit", value="Upload Video")

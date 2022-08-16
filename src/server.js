@@ -13,6 +13,8 @@ const PORT = 4000;
 app.set("view engine", "pug");
 // pug 파일을 찾아보는 디렉토리 변경
 app.set("views", process.cwd() + "/src/views");
+// express application understands html 'forms' and transforms them into javascript
+app.use(express.urlencoded({ extended: true }));
 // 라우터 적용
 app.use("/", globalRouter);
 app.use("/users", userRouter);

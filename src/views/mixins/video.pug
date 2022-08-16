@@ -1,9 +1,10 @@
 //- 비디오 블록을 보여주는 mixin
 mixin video(info)
     div 
-        h4=info.title
+        h4
+            a(href=`/videos/${info.id}`)=info.title
         ul 
             li #{info.rating}/5
             li #{info.comments} comments 
             li Posted #{info.createdAt}
-            li #{info.view} views
+            li #{info.view} #{info.view === 1 ? "view" : "views"}
