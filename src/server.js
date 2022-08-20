@@ -7,8 +7,6 @@ import videoRouter from "./routers/videoRouter";
 const app = express();
 // express 관련 코드는 이 문장 아래에 작성해야 함
 
-const PORT = 4000;
-
 // view engine 적용
 app.set("view engine", "pug");
 // pug 파일을 찾아보는 디렉토리 변경
@@ -25,6 +23,4 @@ app.use("/videos", videoRouter);
 // };
 // app.get("/login", handleLogin);
 
-const handleListening = () =>
-	console.log(`🍏 Server Listening on http://localhost:${PORT}`);
-app.listen(PORT, handleListening);
+export default app;

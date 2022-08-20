@@ -1,49 +1,27 @@
-let videos = [
-	{
-		title: "Hello",
-		rating: 5,
-		comments: 2,
-		createdAt: "2 minutes ago",
-		view: 1,
-		id: 1,
-	},
-	{
-		title: "Jannabi",
-		rating: 5,
-		comments: 42,
-		createdAt: "10 minutes ago",
-		view: 100,
-		id: 2,
-	},
-	{
-		title: "Paul Kim",
-		rating: 5,
-		comments: 34,
-		createdAt: "4 minutes ago",
-		view: 77,
-		id: 3,
-	},
-];
+import Video from "../models/Video.js";
 
-export const trending = (req, res) => {
-	return res.render("home", { pageTitle: "Home", videos });
+export const home = (req, res) => {
+	// 데이터베이스에서 데이터를 모두 받아올 때까지 기다림 callback 사용
+	Video.find({}, (error, videos) => {
+		console.log("errors", error);
+		console.log("videos", videos);
+	});
+	return res.render("home", { pageTitle: "Home" });
 };
 
 export const watch = (req, res) => {
 	const { id } = req.params;
-	const video = videos[id - 1];
-	return res.render("watch", { pageTitle: `Watch ${video.title}`, video });
+	return res.render("watch", { pageTitle: `Watch` });
 };
 
 export const getEdit = (req, res) => {
 	const { id } = req.params;
-	const video = videos[id - 1];
-	return res.render("edit", { pageTitle: `Edit ${video.title}`, video });
+	return res.render("edit", { pageTitle: `Edit` });
 };
 export const postEdit = (req, res) => {
 	const { id } = req.params;
+	// form의 method를 POST로 설정하면, form에 입력된 데이터를 req.body로 전송
 	const { title } = req.body;
-	videos[id - 1].title = title;
 	return res.redirect(`/videos/${id}`);
 };
 
@@ -53,15 +31,6 @@ export const getUpload = (req, res) => {
 	return res.render("Upload", { pageTitle: `Upload Video` });
 };
 export const postUpload = (req, res) => {
-	const newVideo = {
-		title: req.body.title,
-		rating: 0,
-		comments: 0,
-		createdAt: "just now",
-		view: 1,
-		id: videos.length + 1,
-	};
-	videos.push(newVideo);
 	return res.redirect("/");
 };
 
