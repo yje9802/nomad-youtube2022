@@ -1,11 +1,9 @@
 import Video from "../models/Video.js";
 
-export const home = (req, res) => {
-	// 데이터베이스에서 데이터를 모두 받아올 때까지 기다림 callback 사용
-	Video.find({}, (error, videos) => {
-		// videos를 다 받아오면 home 페이지가 render 됨
-		return res.render("home", { pageTitle: "Home", videos });
-	});
+// video 데이터를 다 받아오고 render 해주기 위해 promise 사용 (callback과 유사하나 다름)
+export const home = async (req, res) => {
+	const videos = await Video.find({});
+	return res.render("home", { pageTitle: "Home", videos });
 };
 
 export const watch = (req, res) => {
