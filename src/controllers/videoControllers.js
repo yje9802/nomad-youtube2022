@@ -3,10 +3,9 @@ import Video from "../models/Video.js";
 export const home = (req, res) => {
 	// 데이터베이스에서 데이터를 모두 받아올 때까지 기다림 callback 사용
 	Video.find({}, (error, videos) => {
-		console.log("errors", error);
-		console.log("videos", videos);
+		// videos를 다 받아오면 home 페이지가 render 됨
+		return res.render("home", { pageTitle: "Home", videos });
 	});
-	return res.render("home", { pageTitle: "Home" });
 };
 
 export const watch = (req, res) => {
