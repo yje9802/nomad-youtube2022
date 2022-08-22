@@ -1,9 +1,11 @@
 extends base.pug
 
 block content 
-    h4 Change Title of video
+    h4 Update Your Video
     //- GET 리퀘스트를 POST 리퀘스트로 변경해서 database에 데이터를 보내게 함
     form(method="POST")
         //- input에 name property가 있어야 req.body 갸능
         input(name="title", placeholder="Video Title", value=video.title, required)
+        input(name="description", placeholder="Description", required, type="text", maxlength=140, value=video.description)
+        input(name="hashtags", placeholder="Hashtags, separated by comma", required, type="text", value=video.hashtags.join())
         input(value="Save", type="submit")
