@@ -1,7 +1,11 @@
 extends base.pug
 
 block content 
+    if errorMessage    
+        span=errorMessage
     //- action을 추가해주면 다른 url로 전송 가능
     form(method="POST")
         input(name="title", placeholder="Title", required, type="text")
+        input(name="description", placeholder="Description", required, type="text")
+        input(name="hashtags", placeholder="Hashtags, separated by comma", required, type="text")
         input(type="submit", value="Upload Video")

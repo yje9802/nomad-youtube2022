@@ -27,8 +27,30 @@ export const search = (req, res) => res.send("Search");
 export const getUpload = (req, res) => {
 	return res.render("Upload", { pageTitle: `Upload Video` });
 };
-export const postUpload = (req, res) => {
-	return res.redirect("/");
+export const postUpload = async (req, res) => {
+	const { title, description, hashtags } = req.body;
+	// video는 mongoose 모델
+	try {
+		const video = new Video({
+			title: title,
+			description,
+			hashtags: hashtags.split(",").map((word) => `#${word}`),
+		});
+		// video가 db에 다 저장될 때까지 기다림
+		await video.save();
+		return res.redirect("/");
+	} catch (error) {
+		return res.render("upload", {
+			pageTitle: "Upload Video",
+			errorMessage: error._message,
+		});
+	}
+
+	// 아니면
+	// await Video.create({
+	// 	...
+	// })
+	// 이렇게 해도 같은 결과
 };
 
 export const deleteVideo = (req, res) => res.send("Delete Video");
