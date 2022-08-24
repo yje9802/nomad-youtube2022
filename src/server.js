@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
@@ -13,6 +14,12 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 // express application understands html 'forms' and transforms them into javascript
 app.use(express.urlencoded({ extended: true }));
+// 라우터 전에 세션 설정
+app.use(session({
+	secret: "Hello",
+	resave: true,
+	'saveUninitialized: true'
+}))
 // 라우터 적용
 app.use("/", rootRouter);
 app.use("/users", userRouter);
