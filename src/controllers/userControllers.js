@@ -1,4 +1,35 @@
-export const join = (req, res) => res.send("Join");
+import User from "../models/User";
+
+export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const postJoin = async (req, res) => {
+	const { name, username, email, password1, password2, location } = req.body;
+	// username이나 email이 이미 사용 중인 것인지 체크
+	const exists = await User.exists({
+		$or: [{ username }, { email }],
+	});
+	// 비밀번호 확인
+	if (password1 !== password2) {
+		return res.render("join", {
+			pageTitle: "Join",
+			errorMessage: "Password confirmation does not match.",
+		});
+	}
+	if (exists) {
+		return res.render("join", {
+			pageTitle: "Join",
+			errorMessage: "This Username/Email is already used.",
+		});
+	}
+
+	await User.create({
+		name,
+		username,
+		email,
+		password: password1,
+		location,
+	});
+	return res.redirect("/login");
+};
 
 export const edit = (req, res) => res.send("Edit User");
 

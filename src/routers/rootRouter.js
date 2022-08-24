@@ -1,17 +1,17 @@
 import express from "express";
 
-import { join, login } from "../controllers/userControllers";
+import { getJoin, postJoin, login } from "../controllers/userControllers";
 import { home, search } from "../controllers/videoControllers";
 
 // ./ 이거는 현재 위치
 // ../ 이거는 현재 위치를 벗어난다는 의미
 
-const globalRouter = express.Router();
+const rootRouter = express.Router();
 
-globalRouter.get("/", home);
-globalRouter.get("/join", join);
-globalRouter.get("/login", login);
-globalRouter.get("/search", search);
+rootRouter.get("/", home);
+rootRouter.route("/join").get(getJoin).post(postJoin);
+rootRouter.get("/login", login);
+rootRouter.get("/search", search);
 
 // export Router
 export default globalRouter;

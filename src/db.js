@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 mongoose.connect("mongodb://127.0.0.1:27017/nomad-youtube2022", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useCreateIndex: true,
 });
 
 const handleOpen = () => console.log("🥦 Conncected to DB");

@@ -1,6 +1,6 @@
 import express from "express";
 
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
@@ -14,7 +14,7 @@ app.set("views", process.cwd() + "/src/views");
 // express application understands html 'forms' and transforms them into javascript
 app.use(express.urlencoded({ extended: true }));
 // 라우터 적용
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
