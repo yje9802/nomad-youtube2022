@@ -9,13 +9,13 @@ export const postJoin = async (req, res) => {
 	});
 	// 비밀번호 확인
 	if (password1 !== password2) {
-		return res.render("join", {
+		return res.status(400).render("join", {
 			pageTitle: "Join",
 			errorMessage: "Password confirmation does not match.",
 		});
 	}
 	if (exists) {
-		return res.render("join", {
+		return res.status(400).render("join", {
 			pageTitle: "Join",
 			errorMessage: "This Username/Email is already used.",
 		});
